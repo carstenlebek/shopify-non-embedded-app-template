@@ -1,7 +1,7 @@
 import {NextResponse} from "next/server"
 
 export async function middleware(req) {
-    if (req.url.includes('app')) {
+    if (req.url.includes('/app')) {
         const urlParams = new URLSearchParams(req.url.split("?")[1])
 
         const query = Object.fromEntries(urlParams)

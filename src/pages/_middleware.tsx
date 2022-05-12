@@ -33,9 +33,9 @@ export async function middleware(req: NextRequest) {
                 return NextResponse.next()
             } else {
                 if (shop) {
-                    return NextResponse.redirect(`${process.env.HOST}/api/auth/offline?shop=${shop}`)
+                    return NextResponse.redirect(`${process.env.HOST}/api/auth/offline?shop=${shop}`, 303)
                 } else {
-                    return NextResponse.redirect(`${process.env.HOST}/login`)
+                    return NextResponse.redirect(`${process.env.HOST}/login`, 303)
                 }
             }
         }

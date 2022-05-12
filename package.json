@@ -21,6 +21,7 @@
     "react-dom": "18.1.0"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^17.0.32",
     "@types/react": "^18.0.9",
     "eslint": "8.15.0",

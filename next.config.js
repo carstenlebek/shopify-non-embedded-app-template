@@ -28,14 +28,15 @@ const writeEnvToFile = (
 
 async function setHost() {
     const tunnel = await localtunnel({port: 3000, subdomain: process.env.DEV_APP_SUBDOMAIN})
-
     console.log(chalk.bgGreen.bold('Shopify App Url:'), tunnel.url);
     writeEnvToFile([{key: "HOST", value: tunnel.url}])
+    return tunnel.url
 }
 
 module.exports = async (phase) => {
+    let HOST = process.env.HOST
     if (phase === PHASE_DEVELOPMENT_SERVER) {
-        await setHost()
+        HOST = await setHost()
     }
     /**
      * @type {import('next').NextConfig}
@@ -44,7 +45,7 @@ module.exports = async (phase) => {
         reactStrictMode: true,
         /* config options here */
         env: {
-            HOST: process.env.HOST
+            HOST
         }
     }
 }

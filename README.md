@@ -24,6 +24,7 @@ Intentionally barebones. 🦴
 ## 👀 Requirements
 - Shopify Partner Account
 - Shopify Dev Store
+- Upstash Redis Database
 
 ## 🤓 Getting Started
 - Click `Use this template` or [this link](https://github.com/carstenlebek/shopify-non-embedded-app-template/generate)

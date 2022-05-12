@@ -16,7 +16,7 @@ Intentionally barebones. 🦴
 - ⚡ Next.js - React Framework for static rendering
 - ✨ Serverless Architecture
 - 💳 App Subscrptions
-- 💾 Session Storage with MongoDB
+- 💾 Session Storage with Redis
 - 🚇 Localtunnel for development
 - 🚀 Apollo/Client
 - 🪝 Webhooks set up
@@ -38,6 +38,8 @@ Intentionally barebones. 🦴
   - `SHOP`: Your dev stores url
   - `DEV_APP_SUBDOMAIN`: Your desired localtunnel subdomain. If it isn't available, you will get assigned a random subdomain.
   - `MONGO_URI`: Your MongoDB connection uri. If you leave this empty, a local instance of MongoDB will be used.
+  - `UPSTASH_REDIS_REST_URL`: Your Upstash Redis REST url.
+  - `UPSTASH_REDIS_REST_TOKEN`: Your Upstash Redis REST token.
  - Run `npm run install` 
  - Run `npm run dev`
  - Set your App Urls in the partner dashboard. Your Apps localtunnel Url will be displayed in the console on `npm run dev` and written to your `.env` file

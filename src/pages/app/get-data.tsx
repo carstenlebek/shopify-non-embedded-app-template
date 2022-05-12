@@ -1,5 +1,5 @@
 import {gql, useLazyQuery} from "@apollo/client";
-import styles from '../../styles/Global.module.css'
+import styles from 'src/styles/Global.module.css'
 import {useState} from "react";
 import Link from "next/link";
 

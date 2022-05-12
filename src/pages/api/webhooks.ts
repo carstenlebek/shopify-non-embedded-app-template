@@ -1,6 +1,7 @@
-import Shopify from "../../lib/shopify";
+import Shopify from "@lib/shopify";
+import { ApiRequest, NextApiResponse } from "@types";
 
-export default async function handler(req, res) {
+export default async function handler(req: ApiRequest, res: NextApiResponse) {
     console.log('Incoming Webhook')
     if (req.method === "POST") {
         try {

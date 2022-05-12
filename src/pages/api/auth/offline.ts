@@ -1,4 +1,4 @@
-import Shopify from "../../../lib/shopify";
+import Shopify from "@lib/shopify";
 import { ApiRequest, NextApiResponse } from "@types";
 
 export default async function handler(req: ApiRequest, res: NextApiResponse) {

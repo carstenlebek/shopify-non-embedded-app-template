@@ -1,52 +1,40 @@
 import Shopify from "@shopify/shopify-api";
-import * as mongoose from 'mongoose'
-import dbConnect from "./db"
-import SessionModel from "./models/SessionModel";
+import fetch from "node-fetch";
+
+const upstashRedisRestUrl = process.env.UPSTASH_REDIS_REST_URL;
+
+const headers = {
+    Authorization: `Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`,
+    Accept: "application/json",
+    "Content-Type": "application/json",
+};
 
 const storeCallback = async (session) => {
-    await dbConnect()
-    console.log(mongoose.models)
-    const sessionModel = mongoose.models.session || SessionModel
-    const result = await sessionModel.findOne({id: session.id})
+    const {result} = await fetch(`${upstashRedisRestUrl}/set/${session.id}${!session.id.includes("offline") && '?EX=300'}`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(session),
+    }).then(res => res.json());
 
-    if (result === null) {
-        await mongoose.models.session.create({
-            id: session.id,
-            shop: session.shop,
-            state: session.state,
-            isOnline: session.isOnline,
-            accessToken: session.accessToken,
-            scope: session.scope
-        })
-    } else {
-        await result.update({
-            shop: session.shop,
-            state: session.state,
-            isOnline: session.isOnline,
-            accessToken: session.accessToken,
-            scope: session.scope
-        })
-    }
-
-    return true
+    return result === 'OK';
 }
 
 const loadCallback = async (id) => {
-    await dbConnect()
-    const sessionModel = mongoose.models.session || SessionModel
-    const session = await sessionModel.findOne({id})
+    const {result} = await fetch(`${upstashRedisRestUrl}/get/${id}`, {
+        method: "GET",
+        headers,
+    }).then(res => res.json());
 
-    if (session.shop.length > 0) {
-        return JSON.parse(JSON.stringify(session))
-    }
-    return undefined
+    return JSON.parse(result)
 }
 
 const deleteCallback = async (id) => {
-    await dbConnect()
-    const sessionModel = mongoose.models.session || SessionModel
-    await sessionModel.deleteMany({id})
-    return true
+    const {result} = await fetch(`${upstashRedisRestUrl}/del/${id}`, {
+        method: "DELETE",
+        headers,
+    }).then(res => res.json());
+
+    return result === 'OK';
 }
 
 const SessionStorage = new Shopify.Session.CustomSessionStorage(storeCallback, loadCallback, deleteCallback)

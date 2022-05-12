@@ -9,7 +9,7 @@ const headers = {
 };
 
 export async function middleware(req: NextRequest) {
-    if (req.url.includes('/app')) {
+    if (req.url.includes('/app') || req.url.includes('/graphql')) {
         const urlParams = new URLSearchParams(req.url.split("?")[1])
 
         const query = Object.fromEntries(urlParams)

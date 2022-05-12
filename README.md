@@ -38,7 +38,6 @@ Intentionally barebones. 🦴
   - `HOST`: The Url of your app. Leave this empty for development
   - `SHOP`: Your dev stores url
   - `DEV_APP_SUBDOMAIN`: Your desired localtunnel subdomain. If it isn't available, you will get assigned a random subdomain.
-  - `MONGO_URI`: Your MongoDB connection uri. If you leave this empty, a local instance of MongoDB will be used.
   - `UPSTASH_REDIS_REST_URL`: Your Upstash Redis REST url.
   - `UPSTASH_REDIS_REST_TOKEN`: Your Upstash Redis REST token.
  - Run `npm run install` 

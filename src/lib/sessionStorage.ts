@@ -10,7 +10,7 @@ const headers = {
 };
 
 const storeCallback = async (session) => {
-    const {result} = await fetch(`${upstashRedisRestUrl}/set/${session.id}${!session.id.includes("offline") && '?EX=300'}`, {
+    const {result} = await fetch(`${upstashRedisRestUrl}/set/${session.id}${!session.id.includes("offline") ? ('?EX=300') : ""}`, {
         method: "POST",
         headers,
         body: JSON.stringify(session),

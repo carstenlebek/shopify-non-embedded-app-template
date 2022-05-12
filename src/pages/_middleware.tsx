@@ -1,20 +1,35 @@
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server"
+import {NextRequest, NextResponse} from "next/server"
 
-export async function middleware(req) {
+const upstashRedisRestUrl = process.env.UPSTASH_REDIS_REST_URL;
+
+const headers = {
+    Authorization: `Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`,
+    Accept: "application/json",
+    "Content-Type": "application/json",
+};
+
+export async function middleware(req: NextRequest) {
     if (req.url.includes('/app')) {
         const urlParams = new URLSearchParams(req.url.split("?")[1])
 
         const query = Object.fromEntries(urlParams)
 
-        const { shop } = query;
+        const {shop} = query;
 
-        if (req.cookies['shopify_app_session'] === undefined) {
+        const sessionId = req.cookies['shopify_app_session'];
+
+        if (sessionId === undefined) {
             console.log("Redirect to login")
             return NextResponse.redirect(`${process.env.HOST}/login`)
         } else {
-            const response = await fetch(`${process.env.HOST}/api/auth/verify-session?sessionToken=${req.cookies['shopify_app_session']}`);
-            if (response.status === 200) {
+            const {result} = await fetch(`${upstashRedisRestUrl}/get/${sessionId}`, {
+                method: "GET",
+                headers
+            }).then(res => res.json());
+
+            const session = JSON.parse(result)
+
+            if (session) {
                 return NextResponse.next()
             } else {
                 if (shop) {
@@ -23,7 +38,6 @@ export async function middleware(req) {
                     return NextResponse.redirect(`${process.env.HOST}/login`)
                 }
             }
-
         }
     }
 

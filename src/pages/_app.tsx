@@ -7,6 +7,16 @@ function MyApp({Component, pageProps}) {
         cache: new InMemoryCache(),
         link: new HttpLink({
             uri: `/api/graphql`,
+            fetch: async (uri, options) => {
+                const response = await fetch(uri, {
+                    redirect: 'follow',
+                    ...options
+                });
+                if (response.redirected) {
+                    window.location.href = response.url;
+                }
+                return response;
+            }
         }),
     });
 

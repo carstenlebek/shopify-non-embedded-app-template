@@ -9,6 +9,7 @@ const headers = {
 };
 
 export async function middleware(req: NextRequest) {
+
     if (req.url.includes('/app') || req.url.includes('/graphql')) {
         const urlParams = new URLSearchParams(req.url.split("?")[1])
 
@@ -33,9 +34,10 @@ export async function middleware(req: NextRequest) {
                 return NextResponse.next()
             } else {
                 if (shop) {
-                    return NextResponse.redirect(`${process.env.HOST}/api/auth/offline?shop=${shop}`, 303)
+                    return NextResponse.redirect(`${process.env.HOST}/api/auth/offline?shop=${shop}`)
                 } else {
-                    return NextResponse.redirect(`${process.env.HOST}/login`, 303)
+                    console.log(req.method)
+                    return NextResponse.redirect(`${process.env.HOST}/login`)
                 }
             }
         }

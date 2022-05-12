@@ -1,6 +1,7 @@
+import { NextApiRequest } from "next";
 import {NextResponse} from "next/server"
 
-export async function middleware(req) {
+export async function middleware(req: NextApiRequest) {
     if (req.url.includes('/app')) {
         const urlParams = new URLSearchParams(req.url.split("?")[1])
 

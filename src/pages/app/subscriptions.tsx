@@ -1,4 +1,4 @@
-import styles from '../../styles/Global.module.css'
+import styles from '@styles/Global.module.css'
 import {gql, useLazyQuery, useMutation} from "@apollo/client";
 import {useState} from "react";
 import Link from "next/link";

@@ -1,4 +1,4 @@
-import styles from '../styles/Global.module.css'
+import styles from '@styles/Global.module.css'
 import Head from "next/head";
 import Link from "next/link";
 

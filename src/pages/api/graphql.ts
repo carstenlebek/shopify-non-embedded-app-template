@@ -1,6 +1,7 @@
-import Shopify from "../../lib/shopify";
+import Shopify from "@lib/shopify";
+import { ApiRequest, NextApiResponse } from "@types";
 
-export default async function handler(req, res) {
+export default async function handler(req: ApiRequest, res: NextApiResponse) {
     try {
         const response = await Shopify.Utils.graphqlProxy(req, res);
         res.status(200).send(response.body);

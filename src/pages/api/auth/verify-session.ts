@@ -1,9 +1,10 @@
-import SessionModel from "../../../lib/models/SessionModel";
+import SessionModel from "@lib/models/SessionModel";
 import mongoose from "mongoose";
-import dbConnect from "../../../lib/db";
-import ShopModel from "../../../lib/models/ShopModel";
+import dbConnect from "@lib/db";
+import ShopModel from "@lib/models/ShopModel";
+import { ApiRequest, NextApiResponse } from "@types";
 
-export default async function handler(req, res) {
+export default async function handler(req: ApiRequest, res: NextApiResponse) {
     await dbConnect()
     const sessionModel = mongoose.models.session || SessionModel
     const {sessionToken} = req.query

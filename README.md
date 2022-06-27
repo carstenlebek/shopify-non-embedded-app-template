@@ -6,6 +6,7 @@ This Template utilizes Middleware and APIs for OAuth, so no custom server is nee
 Intentionally barebones. 🦴
 
 ## Table of Contents
+
 - 🤩 Features
 - 👀 Requirements
 - 🤓 Getting Started
@@ -13,20 +14,24 @@ Intentionally barebones. 🦴
 - 🧰 Built with
 
 ## 🤩 Features
+
 - ⚡ Next.js - React Framework for static rendering
 - ✨ Serverless Architecture
 - 💳 App Subscrptions
 - 💾 Session Storage with Redis
-- 🚇 Localtunnel for development
+- 🚇 Ngrok for development
 - 🚀 Apollo/Client
 - 🪝 Webhooks set up
 
 ## 👀 Requirements
+
 - Shopify Partner Account
 - Shopify Dev Store
+- Ngrok account
 - Upstash Redis Database
 
 ## 🤓 Getting Started
+
 - Click `Use this template` or [this link](https://github.com/carstenlebek/shopify-non-embedded-app-template/generate)
 - Create an App in your Shopify Partner Account
   - Set https://localhost as the App Url for now
@@ -37,21 +42,15 @@ Intentionally barebones. 🦴
   - `SCOPES`: The [access scopes](https://shopify.dev/api/usage/access-scopes) your app needs
   - `HOST`: The Url of your app. Leave this empty for development
   - `SHOP`: Your dev stores url
-  - `DEV_APP_SUBDOMAIN`: Your desired localtunnel subdomain. If it isn't available, you will get assigned a random subdomain.
+  - `NGROK_AUTH_TOKEN`: Your [Ngrok auth token](https://dashboard.ngrok.com/get-started/your-authtoken)
   - `UPSTASH_REDIS_REST_URL`: Your Upstash Redis REST url.
   - `UPSTASH_REDIS_REST_TOKEN`: Your Upstash Redis REST token.
- - Run `npm run install` 
- - Run `npm run dev`
- - Set your App Urls in the partner dashboard. Your Apps localtunnel Url will be displayed in the console on `npm run dev` and written to your `.env` file
-    - App Url: `https://{YOUR_APP_URL}/app`
-    - Allowed redirection Urls
-      - `https://{YOUR_APP_URL}/api/auth`
-      - `https://{YOUR_APP_URL}/api/auth/callback`
-      - `https://{YOUR_APP_URL}/api/auth/offline`
-      - `https://{YOUR_APP_URL}/api/auth/offline-callback`
- - Visit `https://{YOUR_APP_URL}/login` to install your app
+- Run `npm run install`
+- Run `npm run dev`
+- Visit `https://{YOUR_APP_URL}/login` to install your app
 
 ## 🚀 One click deploy
+
 Clone and deploy this template in one click to Vercel for free!
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcarstenlebek%2Fshopify-non-embedded-app-template&env=SHOPIFY_API_KEY,SHOPIFY_API_SECRET_KEY,SCOPES,MONGO_URI&envDescription=API%20keys%20needed%20for%20this%20Shopify%20App%20Template.&project-name=non-embedded-shopify-app&repo-name=non-embedded-shopify-app)
@@ -59,6 +58,7 @@ Clone and deploy this template in one click to Vercel for free!
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## 🧰 Built with
+
 - [Next.js](https://nextjs.org/)
 - [@shopify/shopify-api](https://github.com/Shopify/shopify-node-api)
 - [@apollo/client](https://www.apollographql.com/docs/react/)

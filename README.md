@@ -45,7 +45,7 @@ Intentionally barebones. 🦴
   - `NGROK_AUTH_TOKEN`: Your [Ngrok auth token](https://dashboard.ngrok.com/get-started/your-authtoken)
   - `UPSTASH_REDIS_REST_URL`: Your Upstash Redis REST url.
   - `UPSTASH_REDIS_REST_TOKEN`: Your Upstash Redis REST token.
-- Run `npm run install`
+- Run `npm install`
 - Run `npm run dev`
 - Visit `https://{YOUR_APP_URL}/login` to install your app
 
